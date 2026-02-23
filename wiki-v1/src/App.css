@@ -82,6 +82,16 @@ body {
   color: #4338ca;
 }
 
+.toolbar button.toolbar-danger {
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+.toolbar button.toolbar-danger:hover {
+  background: #fef2f2;
+  border-color: #dc2626;
+}
+
 .toolbar-divider {
   width: 1px;
   background: #e2e8f0;
