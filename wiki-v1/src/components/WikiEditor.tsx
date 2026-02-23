@@ -3,8 +3,15 @@ import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
 import Placeholder from '@tiptap/extension-placeholder';
+import { TaskList } from '@tiptap/extension-task-list';
+import { TaskItem } from '@tiptap/extension-task-item';
+import { Table } from '@tiptap/extension-table';
+import { TableRow } from '@tiptap/extension-table-row';
+import { TableHeader } from '@tiptap/extension-table-header';
+import { TableCell } from '@tiptap/extension-table-cell';
 import { useCallback, useEffect, useState } from 'react';
 import { Toolbar } from './Toolbar';
+import { BubbleToolbar } from './BubbleToolbar';
 import { loadContent, saveContent } from '../utils/storage';
 import { htmlToMarkdown, markdownToHtml } from '../utils/markdown';
 import { processImageFile } from '../utils/image';
@@ -28,6 +35,7 @@ export function WikiEditor() {
     extensions: [
       StarterKit.configure({
         link: false,
+        codeBlock: false,
       }),
       Link.configure({
         openOnClick: false,
@@ -43,6 +51,16 @@ export function WikiEditor() {
       Placeholder.configure({
         placeholder: 'Aloita kirjoittaminen...',
       }),
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
       LoomEmbed,
     ],
     content: markdownToHtml(loadContent()),
@@ -128,6 +146,7 @@ export function WikiEditor() {
   return (
     <div className="wiki-editor">
       <Toolbar editor={editor} />
+      {editor && <BubbleToolbar editor={editor} />}
       <EditorContent editor={editor} className="editor-content" />
       <div className="status-bar">
         {saveStatus === 'saving' && <span className="status saving">Tallennetaan...</span>}

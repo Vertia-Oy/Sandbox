@@ -61,25 +61,6 @@ export function Toolbar({ editor }: ToolbarProps) {
 
       <button
         type="button"
-        onClick={() => editor.chain().focus().toggleBold().run()}
-        className={editor.isActive('bold') ? 'active' : ''}
-        title="Lihavointi"
-      >
-        <strong>B</strong>
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleItalic().run()}
-        className={editor.isActive('italic') ? 'active' : ''}
-        title="Kursivointi"
-      >
-        <em>I</em>
-      </button>
-
-      <span className="toolbar-divider" />
-
-      <button
-        type="button"
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'active' : ''}
         title="Lista"
@@ -94,21 +75,37 @@ export function Toolbar({ editor }: ToolbarProps) {
       >
         1. Lista
       </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleTaskList().run()}
+        className={editor.isActive('taskList') ? 'active' : ''}
+        title="Tehtävälista"
+      >
+        Tehtävät
+      </button>
 
       <span className="toolbar-divider" />
 
       <button
         type="button"
-        onClick={() => {
-          const url = window.prompt('Syötä URL:');
-          if (url) {
-            editor.chain().focus().setLink({ href: url }).run();
-          }
-        }}
-        className={editor.isActive('link') ? 'active' : ''}
-        title="Linkki"
+        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+        className={editor.isActive('codeBlock') ? 'active' : ''}
+        title="Koodilohko"
       >
-        Linkki
+        {'</>'}
+      </button>
+      <button
+        type="button"
+        onClick={() =>
+          editor
+            .chain()
+            .focus()
+            .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+            .run()
+        }
+        title="Lisää taulukko"
+      >
+        Taulukko
       </button>
 
       <span className="toolbar-divider" />
