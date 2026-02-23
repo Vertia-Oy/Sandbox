@@ -15,10 +15,10 @@ describe('App', () => {
   it('renders the editor toolbar', () => {
     render(<App />);
     expect(screen.getByTitle('Otsikko 1')).toBeInTheDocument();
-    expect(screen.getByTitle('Lihavointi')).toBeInTheDocument();
-    expect(screen.getByTitle('Kursivointi')).toBeInTheDocument();
     expect(screen.getByTitle('Lista')).toBeInTheDocument();
-    expect(screen.getByTitle('Linkki')).toBeInTheDocument();
+    expect(screen.getByTitle('Tehtävälista')).toBeInTheDocument();
+    expect(screen.getByTitle('Koodilohko')).toBeInTheDocument();
+    expect(screen.getByTitle('Lisää taulukko')).toBeInTheDocument();
     expect(screen.getByTitle('Lisää kuva')).toBeInTheDocument();
   });
 
