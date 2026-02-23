@@ -108,6 +108,64 @@ export function Toolbar({ editor }: ToolbarProps) {
         Taulukko
       </button>
 
+      {editor.isActive('table') && (
+        <>
+          <span className="toolbar-divider" />
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().addRowBefore().run()}
+            title="Lisää rivi yläpuolelle"
+          >
+            + Rivi ↑
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().addRowAfter().run()}
+            title="Lisää rivi alapuolelle"
+          >
+            + Rivi ↓
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().deleteRow().run()}
+            title="Poista rivi"
+            className="toolbar-danger"
+          >
+            − Rivi
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().addColumnBefore().run()}
+            title="Lisää sarake vasemmalle"
+          >
+            + Sarake ←
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().addColumnAfter().run()}
+            title="Lisää sarake oikealle"
+          >
+            + Sarake →
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().deleteColumn().run()}
+            title="Poista sarake"
+            className="toolbar-danger"
+          >
+            − Sarake
+          </button>
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().deleteTable().run()}
+            title="Poista taulukko"
+            className="toolbar-danger"
+          >
+            Poista taulukko
+          </button>
+        </>
+      )}
+
       <span className="toolbar-divider" />
 
       <button
